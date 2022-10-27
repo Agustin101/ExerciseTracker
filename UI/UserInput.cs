@@ -35,7 +35,11 @@ namespace UI
                     await GetInput();
                     break;
                 case "U":
-                    await ExerciseService.UpdateExercise();
+                    await ExerciseService.ProcessUpdateExercise();
+                    await GetInput();
+                    break;
+                case "D":
+                    await ExerciseService.ProcessDeleteExercise();
                     await GetInput();
                     break;
                 default:
