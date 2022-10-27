@@ -28,5 +28,16 @@ namespace UI.Controllers
             return await _repository.GetAll();
         }
 
+        public async Task Update(Exercise exercise, int id)
+        {
+            await _repository.Update(exercise,id);
+            await _repository.Save();
+        }
+
+        public async Task Remove(int id)
+        {
+            await _repository.Remove(id);
+            await _repository.Save();
+        }
     }
 }
