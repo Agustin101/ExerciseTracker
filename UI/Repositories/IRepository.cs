@@ -11,9 +11,9 @@ namespace UI.Repositories
         Task<TType> GetById(TKey id);
         Task<IEnumerable<TType>> GetAll();
         
-        Task<bool> Insert(TType entity);
-        Task<bool> Remove(TKey id);
-        Task<bool> Update(TType entity);
+        Task<TType> Insert(TType entity);
+        Task Remove(TKey id);
+        Task<TType> Update(TType entity, TKey id);
         Task Save();
 
     }
