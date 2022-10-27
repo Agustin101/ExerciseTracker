@@ -13,19 +13,21 @@ namespace UI
     {
         internal static void ShowTable<T>(List<T> tableData, string tableName = "") where T : class
         {
-            List<string> data = new List<string>();
-            foreach (var item in tableData)
-            {
-                foreach (var i in item.GetType().GetProperties())
-                {
-                    var props = i.Name;
-                    data.Add(props);
-                }
-                break;
-            }
-
+            List<string> propNames = TableNames();
             Console.Clear();
-            ConsoleTableBuilder.From(tableData).WithColumn(data).ExportAndWriteLine();
+            ConsoleTableBuilder.From(tableData).WithColumn(propNames).ExportAndWriteLine();
+        }
+
+        private static List<string> TableNames()
+        {
+            var exercise = new Exercise();
+            List<string> props = new List<string>();
+
+            foreach (var item in exercise.GetType().GetProperties())
+            {
+                props.Add(item.Name);
+            }
+            return props;
         }
     }
 }
