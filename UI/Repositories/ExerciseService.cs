@@ -50,9 +50,44 @@ namespace UI.Repositories
             TableVisualization.ShowTable(sortedList);
         }
 
-        internal static Task UpdateExercise()
+        internal static async Task ProcessUpdateExercise()
         {
-            throw new NotImplementedException();
+            await ShowExercises();
+            int id = Helpers.GetId("update.");
+            var excercise = await _controller.GetAll();
+
+            if (excercise.Any(x => x.Id == id))
+            {
+                Exercise exercise = CreateExercise();
+                await UpdateExercise(exercise, id);
+            }
+            else
+                Console.WriteLine("The selected id doesnt match any record. Press any key to go back.");
+
+            Console.ReadKey();
+        }
+
+        private async static Task UpdateExercise(Exercise exercise, int id)
+        {
+            await _controller.Update(exercise, id);
+            Console.WriteLine("Exercise updated without problems. Press any key to go back.");
+        }
+
+        internal async static Task ProcessDeleteExercise()
+        {
+            await ShowExercises();
+            int id = Helpers.GetId("delete.");
+            var excercise = await _controller.GetAll();
+
+            if (excercise.Any(x => x.Id == id))
+            {
+                await _controller.Remove(id);
+                Console.WriteLine("Record deleted sucesfully, press any key to go back.");
+            }
+            else
+                Console.WriteLine("The selected id doesnt match any record. Press any key to go back.");
+
+            Console.ReadKey();
         }
     }
 }
