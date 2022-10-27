@@ -23,6 +23,10 @@ namespace UI.Controllers
             await _repository.Save();
         } 
 
+        public async Task<IEnumerable<Exercise>> GetAll()
+        {
+            return await _repository.GetAll();
+        }
 
     }
 }
