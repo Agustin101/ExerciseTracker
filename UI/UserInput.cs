@@ -5,8 +5,9 @@ namespace UI
 {
     internal class UserInput
     {
-        internal void GetInput()
+        public async Task GetInput()
         {
+            Console.Clear();
             Console.WriteLine("Welcome to your exercise tracker!");
             Console.WriteLine("A - Add workout.");
             Console.WriteLine("S - See your workouts.");
@@ -17,16 +18,25 @@ namespace UI
 
             if (InputValidator.IsValidString(input))
             {
-                ProcessOption(input);
+                await ProcessOption(input);
             }
         }
 
-        private void ProcessOption(string input)
+        private async Task ProcessOption(string input)
         {
             switch (input.ToUpper())
             {
                 case "A":
-                    ExerciseService.CreateExcercise();
+                    await ExerciseService.ProcessCreateExcercise();
+                    await GetInput();
+                    break;
+                case "S":
+                    await ExerciseService.ProcessShowExercises();
+                    await GetInput();
+                    break;
+                case "U":
+                    await ExerciseService.UpdateExercise();
+                    await GetInput();
                     break;
                 default:
                     break;
