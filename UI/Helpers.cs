@@ -35,5 +35,19 @@ namespace UI
 
             return input;
         }
+
+        internal static int GetId(string type)
+        {
+            Console.WriteLine($"Please enter the id u want to {type}");
+            string? input = Console.ReadLine();
+
+            while (!InputValidator.IsValidInt(input))
+            {
+                Console.WriteLine("Please enter a valid text. Try again.");
+                input = Console.ReadLine();
+            }
+
+            return int.Parse(input);
+        }
     }
 }
