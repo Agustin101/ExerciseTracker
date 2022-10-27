@@ -6,8 +6,11 @@ using System.Threading.Tasks;
 
 namespace UI.Repositories
 {
-    public class ExerciseService
+    public static class ExerciseService
     {
-
+        public static void CreateExcercise()
+        {
+            
+        }
     }
 }
