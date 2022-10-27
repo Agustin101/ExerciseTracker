@@ -11,13 +11,7 @@ namespace UI.Models
         public int Id { get; set; }
         public DateTime startDate { get; set; }
         public DateTime endDate { get; set; }
-        public TimeSpan Duration { get { return CalculateDuration(); } }
+        public TimeSpan Duration { get; set; }
         public string Comments { get; set; }
-
-        private TimeSpan CalculateDuration()
-        {
-            var result = endDate - startDate;
-            return result;
-        }
     }
 }
